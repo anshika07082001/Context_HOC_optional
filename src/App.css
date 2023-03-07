@@ -1,0 +1,26 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
+    gap: 1em;
+    padding: 20px;
+}
+
+.grid__boxes {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 1em;
+    align-items: center;
+}
+
+.grid__boxes img {
+    width: 80%;
+    height: 200px;
+    border-radius: 5px;
+}
+
+.grid__description {
+    font-size: 0.7rem;
+    color: grey;
+}

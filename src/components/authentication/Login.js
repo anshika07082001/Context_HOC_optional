@@ -1,10 +1,9 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../Context";
 
 const Login = () => {
   const context = useContext(UserContext);
-  console.log(context);
   var navigate = useNavigate();
 
   const loginHandler = (e) => {
@@ -15,13 +14,12 @@ const Login = () => {
         item.pwd == context.refInp.current.pwd.value
       ) {
         context.setLoginUser(item);
-        console.log('matched')
         navigate("/dashboard");
       } else {
         console.log("User not found");
       }
     });
-    e.target.reset()
+    e.target.reset();
   };
   return (
     <div className="col-6 m-auto mt-4 border p-4 rounded">
