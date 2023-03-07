@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Dashboard from "./authentication/Dashboard";
 import Login from "./authentication/Login";
+import Cart from "./Cart";
 import UserContext from "./Context";
 
 const Main = () => {
@@ -30,6 +31,10 @@ const Main = () => {
       path: "/dashboard",
       element: <Dashboard />,
     },
+    {
+        path:'/cart',
+        element:<Cart/>
+    }
   ]);
 
   return (

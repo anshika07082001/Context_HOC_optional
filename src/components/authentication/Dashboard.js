@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import UserContext from "../Context";
+import Navbar from "../Navbar";
 
 const Dashboard = () => {
   const context = useContext(UserContext);
@@ -15,20 +16,13 @@ const Dashboard = () => {
 
   const addproduct = (index) => {
     var obj = {};
-    if (context.cart.length == 0) {
-      obj = {
-        id: context.products[index].id,
-        title: context.products[index].title,
-        img: context.products[index].thumbnail,
-        quantity: 1,
-        price: context.products[index].price,
-      };
-      context.cart.push(obj);
-    } else {
+
+    if (context.cart.length > 0) {
       for (var i = 0; i < context.cart.length; i++) {
-        if (context.cart.id == context.products[index].id) {
-          context.cart.quantity++;
-        } else {
+        if (context.cart[i].id === context.products[index].id) {
+          context.cart[i].quantity++;
+          break;
+        } else if (i === context.cart.length - 1) {
           obj = {
             id: context.products[index].id,
             title: context.products[index].title,
@@ -37,21 +31,26 @@ const Dashboard = () => {
             price: context.products[index].price,
           };
           context.cart.push(obj);
+          break;
         }
       }
+    } else {
+      obj = {
+        id: context.products[index].id,
+        title: context.products[index].title,
+        img: context.products[index].thumbnail,
+        quantity: 1,
+        price: context.products[index].price,
+      };
+      context.cart.push(obj);
     }
-    context.setCart(context.cart);
+    context.setCart([...context.cart]);
   };
-  // console.log(context.products);
+  console.log(context.cart);
 
   return (
     <>
-      <nav className="navbar bg-body-tertiary">
-        <div className="container-fluid">
-          <i className="fs-1 bi bi-person-fill"></i>
-          <span className="fw-bold ">Hello, {context.loginUser.name}</span>
-        </div>
-      </nav>
+      <Navbar />
       {context.products !== undefined ? (
         <div className="grid">
           {context.products.map((item, index) => {
