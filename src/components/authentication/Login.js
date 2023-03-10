@@ -49,6 +49,7 @@ const Login = () => {
           Submit
         </button>
       </form>
+      {/* default login details visible to user */}
       <p>Login Email:user123@gmail.com</p>
       <p>Login Password:User@123</p>
     </div>
