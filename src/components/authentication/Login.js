@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import {UserContext} from "../Context";
+import { UserContext } from "../Context";
 
 const Login = () => {
   const context = useContext(UserContext);
@@ -22,7 +22,7 @@ const Login = () => {
     });
     e.target.reset();
   };
-  
+
   return (
     <div className="col-6 m-auto mt-4 border p-4 rounded">
       <form onSubmit={(e) => loginHandler(e)}>
@@ -49,6 +49,8 @@ const Login = () => {
           Submit
         </button>
       </form>
+      <p>Login Email:user123@gmail.com</p>
+      <p>Login Password:User@123</p>
     </div>
   );
 };
