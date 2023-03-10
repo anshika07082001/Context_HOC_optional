@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import UserContext from "../Context";
+import {UserContext} from "../Context";
 
 const Login = () => {
   const context = useContext(UserContext);
-  var navigate = useNavigate();
+  let navigate = useNavigate();
 
   // function checks the entered details if matches then user login successfully
   const loginHandler = (e) => {

@@ -1,23 +1,25 @@
 import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import UserContext from "./Context";
+import {UserContext} from "./Context";
 import Navbar from "./Navbar";
 
 const Cart = () => {
   const context = useContext(UserContext);
   var navigate = useNavigate();
 
+  // function checks if login user is empty or not if yes navigate to login page
+
   useEffect(() => {
-    if (Object.keys(context.loginUser).length > 0) {
-    } else {
+    if (!(Object.keys(context.loginUser).length > 0)) {
       navigate("/");
     }
   }, []);
 
+  // function used to decrement the products quantity in a cart
   const decHandler = (obj) => {
-    var ind = (ele) => ele.id === obj.id;
-    var index = context.products.findIndex(ind);
-    var cartIndex = context.cart.findIndex(ind);
+    let ind = (ele) => ele.id === obj.id;
+    let index = context.products.findIndex(ind);
+    let cartIndex = context.cart.findIndex(ind);
     if (context.cart[cartIndex].quantity > 0) {
       context.cart[cartIndex].quantity--;
       context.products[index].stock++;
@@ -27,11 +29,11 @@ const Cart = () => {
     context.setProducts([...context.products]);
     context.setCart([...context.cart]);
   };
-
+  // function used to increment the products quantity
   const incHandler = (obj) => {
-    var ind = (ele) => ele.id === obj.id;
-    var index = context.products.findIndex(ind);
-    var cartIndex = context.cart.findIndex(ind);
+    let ind = (ele) => ele.id === obj.id;
+    let index = context.products.findIndex(ind);
+    let cartIndex = context.cart.findIndex(ind);
     if (context.products[index].stock > 0) {
       context.cart[cartIndex].quantity++;
       context.products[index].stock--;
@@ -39,11 +41,11 @@ const Cart = () => {
     context.setCart([...context.cart]);
     context.setProducts([...context.products]);
   };
-
+  // function used to delete the product from cart
   const emptyhandler = (obj) => {
-    var ind = (ele) => ele.id === obj.id;
-    var index = context.products.findIndex(ind);
-    var cartIndex = context.cart.findIndex(ind);
+    let ind = (ele) => ele.id === obj.id;
+    let index = context.products.findIndex(ind);
+    let cartIndex = context.cart.findIndex(ind);
     context.products[index].stock =
       context.products[index].stock + context.cart[cartIndex].quantity;
     context.cart.splice(cartIndex, 1);
@@ -55,6 +57,7 @@ const Cart = () => {
     <>
       <Navbar />
       <div className="cart">
+        {/* rendering of cart array when length of cart greater than 0 */}
         {context.cart.length > 0 ? (
           <table>
             <tr>
@@ -65,7 +68,7 @@ const Cart = () => {
               <th>Product Quantity</th>
               <th>Action</th>
             </tr>
-            {context.cart.map((item,i) => {
+            {context.cart.map((item, i) => {
               return (
                 <tr key={i}>
                   <td>{item.id}</td>
@@ -104,6 +107,7 @@ const Cart = () => {
             })}
           </table>
         ) : (
+          // rendering of image when cart length is 0
           <p className="text-center">
             <img
               className="col-5"

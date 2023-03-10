@@ -3,27 +3,31 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Dashboard from "./authentication/Dashboard";
 import Login from "./authentication/Login";
 import Cart from "./Cart";
-import UserContext from "./Context";
+import {UserContext} from "./Context";
 
 const Main = () => {
-  const [users, setUsers] = useState([
+  const users = [
     { name: "Anshika Chaurasiya", email: "user123@gmail.com", pwd: "User@123" },
-  ]);
+  ];
   const [loginUser, setLoginUser] = useState({});
   const [products, setProducts] = useState([]);
-  const [searchProducts,setSearchProducts]=useState([])
+  const [searchProducts, setSearchProducts] = useState([]);
   const [cart, setCart] = useState([]);
-  var refInp = useRef({ email: "", pwd: "" });
 
+  // ref created for login form input boxes
+  let refInp = useRef({ email: "", pwd: "" });
+
+  // function fetches the products data from dummy json url and sets the states
   useEffect(() => {
     fetch("https://dummyjson.com/products")
       .then((res) => res.json())
       .then((result) => {
         setProducts(result.products);
-        setSearchProducts(result.products)
+        setSearchProducts(result.products);
       });
   }, []);
 
+  // router object created to create routing in an react app
   const router = createBrowserRouter([
     {
       path: "/",
@@ -34,9 +38,9 @@ const Main = () => {
       element: <Dashboard />,
     },
     {
-        path:'/cart',
-        element:<Cart/>
-    }
+      path: "/cart",
+      element: <Cart />,
+    },
   ]);
 
   return (
@@ -47,11 +51,11 @@ const Main = () => {
         loginUser: loginUser,
         setLoginUser: setLoginUser,
         products: products,
-        setProducts:setProducts,
+        setProducts: setProducts,
         cart: cart,
         setCart: setCart,
-        searchProducts:searchProducts,
-        setSearchProducts:setSearchProducts
+        searchProducts: searchProducts,
+        setSearchProducts: setSearchProducts,
       }}
     >
       <RouterProvider router={router} />
