@@ -11,6 +11,7 @@ const Main = () => {
   ]);
   const [loginUser, setLoginUser] = useState({});
   const [products, setProducts] = useState([]);
+  const [searchProducts,setSearchProducts]=useState([])
   const [cart, setCart] = useState([]);
   var refInp = useRef({ email: "", pwd: "" });
 
@@ -19,6 +20,7 @@ const Main = () => {
       .then((res) => res.json())
       .then((result) => {
         setProducts(result.products);
+        setSearchProducts(result.products)
       });
   }, []);
 
@@ -45,8 +47,11 @@ const Main = () => {
         loginUser: loginUser,
         setLoginUser: setLoginUser,
         products: products,
+        setProducts:setProducts,
         cart: cart,
         setCart: setCart,
+        searchProducts:searchProducts,
+        setSearchProducts:setSearchProducts
       }}
     >
       <RouterProvider router={router} />

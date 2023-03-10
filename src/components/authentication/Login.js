@@ -6,6 +6,7 @@ const Login = () => {
   const context = useContext(UserContext);
   var navigate = useNavigate();
 
+  // function checks the entered details if matches then user login successfully
   const loginHandler = (e) => {
     e.preventDefault();
     context.users.map((item) => {
@@ -21,6 +22,7 @@ const Login = () => {
     });
     e.target.reset();
   };
+  
   return (
     <div className="col-6 m-auto mt-4 border p-4 rounded">
       <form onSubmit={(e) => loginHandler(e)}>
