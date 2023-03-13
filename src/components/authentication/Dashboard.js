@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../Context";
 import Navbar from "../Navbar";
@@ -9,8 +9,6 @@ import LoaderHOC from "../hoc/LoaderHOC";
 const Dashboard = () => {
   const context = useContext(UserContext);
   let navigate = useNavigate();
-  // value stored in a variable returned from loader Hoc
-  let LoaderHocResult = LoaderHOC(Products);
 
   // array for dynamically filling of filter select box
   let filterArr = [
@@ -45,7 +43,7 @@ const Dashboard = () => {
     context.setSearchProducts([...context.searchProducts]);
   };
   // value stored in a variable returned from searchHoc
-  let SearchResult = SearchHOC(searchHandler);
+  let SearchResult = useMemo(() => SearchHOC(searchHandler), []);
 
   // function filters the data by category wise
   const selectHandler = (e) => {
@@ -57,6 +55,9 @@ const Dashboard = () => {
     });
     context.setSearchProducts([...context.searchProducts]);
   };
+
+  // value stored in a variable returned from loader Hoc
+  let LoaderHocResult = LoaderHOC(Products);
 
   return (
     <>

@@ -6,6 +6,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 const Navbar = () => {
   const context = useContext(UserContext);
+  // console.log('nadgsg')
   return (
     <nav className="navbar bg-body-tertiary position-fixed container-fluid">
       <div className="container-fluid">

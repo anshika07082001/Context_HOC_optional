@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Dashboard from "./authentication/Dashboard";
 import Login from "./authentication/Login";
 import Cart from "./Cart";
-import {UserContext} from "./Context";
+import { UserContext } from "./Context";
 
 const Main = () => {
   const users = [

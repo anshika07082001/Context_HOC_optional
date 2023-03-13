@@ -4,6 +4,7 @@ import { UserContext } from "./Context";
 const Products = () => {
   const context = useContext(UserContext);
 
+  
   //   function used to add the products to the cart array
   const addproduct = (index) => {
     let obj = {};
